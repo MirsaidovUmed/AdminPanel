@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="links">
-                    <a href="https://github.com/MirsaidovOskar">GitHub</a>
+                    <a href="https://github.com/MirsaidovOskar/admin_panel">GitHub</a>
                 </div>
             </div>
         </div>

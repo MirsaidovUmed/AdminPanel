@@ -36,14 +36,14 @@ class AboutusController extends Controller
             ->with('aboutus', $aboutus)
         ;
     }
-    public function update(Request $request, $id)
+        public function update(Request $request, $id)
     {
         $aboutus = Abouts::findOrFail($id);
         $aboutus->title = $request->input('title');
         $aboutus->subtitle = $request->input('subtitle');
         $aboutus->description = $request->input('description');
-        $aboutus->save();
+        $aboutus->update();
 
-        return redirect('abouts')->with('status','Data Updated for About Us' );
+        return redirect('/abouts')->with('status','Data Updated for About Us' );
     }
 }

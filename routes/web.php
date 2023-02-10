@@ -41,7 +41,7 @@ Route::group(['middleware'=>['auth','admin']], function(){
     Route::get('/abouts' , 'Admin\AboutusController@index');
     Route::post('/save-aboutus','Admin\AboutusController@store');
     Route::get('/about-us/{id}','Admin\AboutusController@edit');
-    Route::put('/$aboutus-update/{id}', 'Admin\AboutusController@update');
+    Route::put('/abouts/{id}', 'Admin\AboutusController@update');
 });
 
 

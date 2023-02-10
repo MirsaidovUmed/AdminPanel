@@ -11,7 +11,7 @@
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">About Us - Edit Data</h4>
-                    <form action="{{ url('aboutus-update/'.$aboutus->id) }}" method="POST">
+                    <form action="{{ url('abouts/'.$aboutus->id) }}" method="POST">
                         {{ csrf_field() }}
                         {{ method_field('PUT') }}
 
