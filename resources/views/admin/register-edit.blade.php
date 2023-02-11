@@ -27,11 +27,13 @@
                                <div class="form-group">
                                    <label>Give Role</label>
                                    <select name="usertype" class="form-control">
-                                       <option value="admin">Admin</option>
-                                       <option value="vendor">Vendor</option>
-                                       <option value="">None</option>
+                                       <option value="admin">Админ</option>
+                                       <option value="teacher">Учитель</option>
+                                       <option value="student">Студент</option>
+                                       <option value="cashier">Кассир</option>
                                    </select>
                                </div>
+                               <div><label>Телефон</label><input type="text" name="username" value="{{ $users->phone }}" class="form-control"></div>
                                <button type="submit" class="btn btn-success">Update</button>
                                <a href="/role-register" class="btn btn-danger">Cancel</a>
                            </form>

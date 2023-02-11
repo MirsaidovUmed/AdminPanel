@@ -46,4 +46,10 @@ class AboutusController extends Controller
 
         return redirect('/abouts')->with('status','Data Updated for About Us' );
     }
+    public function delete($id)
+    {
+        $aboutus = Abouts::findOrFail($id);
+        $aboutus->delete();
+        return redirect('/abouts')->with('status' , 'Your Data is Deleted');
+    }
 }

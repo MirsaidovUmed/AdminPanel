@@ -16,7 +16,7 @@ class AdminMiddleware
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {   
+    {
         if(Auth::user()->usertype == 'admin')
         {
             return $next($request);
@@ -25,6 +25,6 @@ class AdminMiddleware
         {
             return redirect('/home')->width('status','You are Not Allowed To Admin Dashboard');
         }
-        
+
     }
 }
