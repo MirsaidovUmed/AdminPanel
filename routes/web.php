@@ -45,6 +45,8 @@ Route::group(['middleware'=>['auth','admin']], function(){
     Route::delete('/abouts/{id}' , 'Admin\AboutusController@delete');
 
     Route::get('stock' , 'Admin\StockController@index');
+    Route::get('profile'  ,'ProfileController@index');
+    Route::get('groups' , 'GroupsController@index');
 });
 
 

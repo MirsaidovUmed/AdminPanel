@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -33,9 +34,11 @@
                                        <option value="cashier">Кассир</option>
                                    </select>
                                </div>
-                               <div><label>Телефон</label><input type="text" name="username" value="{{ $users->phone }}" class="form-control"></div>
+                               <div><label>Телефон</label><input type="text" name="phone" value="{{ $users->phone }}" class="form-control"></div>
+
+                               <div><label>Адрес</label><input type="text" name="address" value="{{ $users->address }}" class="form-control"></div>
                                <button type="submit" class="btn btn-success">Update</button>
-                               <a href="/role-register" class="btn btn-danger">Cancel</a>
+                               <a href="/profile" class="btn btn-danger">Cancel</a>
                            </form>
                        </div>
                    </div>

@@ -28,11 +28,11 @@
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
       <div class="logo">
-        <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+        <a href="#" class="simple-text logo-mini">
           CT
         </a>
-        <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          Creative Tim
+        <a href="#" class="simple-text logo-normal">
+         Ёдгир
         </a>
       </div>
       <div class="sidebar-wrapper" id="sidebar-wrapper">
@@ -50,9 +50,9 @@
             </a>
           </li>
           <li>
-            <a href="./map.html">
+            <a href="groups">
               <i class="now-ui-icons location_map-big"></i>
-              <p>Maps</p>
+              <p>Группы</p>
             </a>
           </li>
           <li class="{{ 'abouts' == request()->path() ? 'active' : '' }}">
@@ -67,10 +67,10 @@
               <p>User Profile</p>
             </a>
           </li>
-          <li>
-            <a href="./tables.html">
+          <li class="{{ 'profile' == request()->path() ? 'active' : '' }}">
+            <a href="profile">
               <i class="now-ui-icons design_bullet-list-67"></i>
-              <p>Table List</p>
+              <p>Профиль</p>
             </a>
           </li>
           <li>
@@ -79,12 +79,7 @@
               <p>Typography</p>
             </a>
           </li>
-          <li class="active-pro">
-            <a href="./upgrade.html">
-              <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-              <p>Upgrade to PRO</p>
-            </a>
-          </li>
+
         </ul>
       </div>
     </div>
