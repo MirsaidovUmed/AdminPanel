@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Staff;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class StaffController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $user = User::all();
-      return view('profile' , compact('user'));
+        //
     }
 
     /**
@@ -42,10 +41,10 @@ class ProfileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Staff $staff)
     {
         //
     }
@@ -53,10 +52,10 @@ class ProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Staff $staff)
     {
         //
     }
@@ -65,10 +64,10 @@ class ProfileController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Staff $staff)
     {
         //
     }
@@ -76,10 +75,10 @@ class ProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Staff  $staff
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Staff $staff)
     {
         //
     }

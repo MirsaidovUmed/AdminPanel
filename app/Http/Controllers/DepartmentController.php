@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Department;
 use Illuminate\Http\Request;
 
-class ProfileController extends Controller
+class DepartmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $user = User::all();
-      return view('profile' , compact('user'));
+        $departments = Department::all();
+        return view('staff.department.index', compact('departments'));
     }
 
     /**
@@ -25,7 +25,7 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        return view('staff.department.create');
     }
 
     /**
@@ -36,16 +36,23 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+        ]);
+
+        Department::create($request->all());
+
+        return redirect()->route('staff.department.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Department $department)
     {
         //
     }
@@ -53,10 +60,10 @@ class ProfileController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Department $department)
     {
         //
     }
@@ -65,10 +72,10 @@ class ProfileController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Department $department)
     {
         //
     }
@@ -76,10 +83,10 @@ class ProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Department $department)
     {
         //
     }
