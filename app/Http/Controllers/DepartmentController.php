@@ -14,8 +14,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $departments = Department::all();
-        return view('staff.department.index', compact('departments'));
+        $department = Department::all();
+        return view('department');
     }
 
     /**
@@ -25,7 +25,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        return view('staff.department.create');
+        //
     }
 
     /**
@@ -36,14 +36,13 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
-        ]);
+        $department = new Department;
 
-        Department::create($request->all());
+        $department->name = $request->input('name');
+        $department->header = $request->input('header');
+        $department->user_id = $request->input('user_id');
 
-        return redirect()->route('staff.department.index');
+        $department->save();
     }
 
     /**
@@ -63,9 +62,10 @@ class DepartmentController extends Controller
      * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit(Department $department)
+    public function edit($id)
     {
-        //
+        $department = Department::findOrFail($id);
+        return view('department');
     }
 
     /**
@@ -75,9 +75,13 @@ class DepartmentController extends Controller
      * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Department $department)
+    public function update(Request $request, $id)
     {
-        //
+        $department = Department::findOrFail($id);
+        $department->name = $request->input('name');
+        $department->header = $request->input('header');
+        $department->user_id = $request->input('user_id');
+        $department->update();
     }
 
     /**
@@ -86,8 +90,9 @@ class DepartmentController extends Controller
      * @param  \App\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Department $department)
+    public function destroy($id)
     {
-        //
+        $department = Department::findOrFail($id);
+        $department->delete();
     }
 }

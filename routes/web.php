@@ -47,6 +47,10 @@ Route::group(['middleware'=>['auth','admin']], function(){
     Route::get('stock' , 'Admin\StockController@index');
     Route::get('profile'  ,'ProfileController@index');
     Route::get('groups' , 'GroupsController@index');
+
+    Route::get('department' , 'DepartmentController@index');
+    Route::get('/department/', 'DepartmentController@store');
+
 });
 
 
