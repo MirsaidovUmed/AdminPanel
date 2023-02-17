@@ -49,7 +49,9 @@ Route::group(['middleware'=>['auth','admin']], function(){
     Route::get('groups' , 'GroupsController@index');
 
     Route::get('department' , 'DepartmentController@index');
-    Route::get('/department/', 'DepartmentController@store');
+    Route::post('department', 'DepartmentController@store');
+    Route::get('attendance', 'AttendanceController@index');
+    Route::post('attendance', 'AttendanceController@store');
 
 });
 
