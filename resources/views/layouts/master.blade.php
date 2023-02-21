@@ -64,7 +64,7 @@
           <li class="{{ 'role-register' == request()->path() ? 'active' : '' }}">
             <a href="/role-register">
               <i class="now-ui-icons users_single-02"></i>
-              <p>User Profile</p>
+              <p>Студенты</p>
             </a>
           </li>
           <li class="{{ 'profile' == request()->path() ? 'active' : '' }}">

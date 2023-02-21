@@ -15,7 +15,7 @@ class GroupsController extends Controller
     public function index()
     {
         $group = Groups::all();
-        dd($group);
+
        return view('groups' , compact('group'));
     }
 
@@ -37,7 +37,16 @@ class GroupsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $group = new  Groups;
+        $group->laguage = '';
+        $group->name = '';
+        $group->type = '';
+        $group->time = '';
+        $group->room = '';
+        $group->teacher = '';
+        $group->students = '';
+        $group->save();
+
     }
 
     /**

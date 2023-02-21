@@ -48,44 +48,47 @@
                             </th>
                             </thead>
                             <tbody>
-                            @foreach($users as $row)
+                            @foreach($users as $user)
                             <tr>
                                 <td>
-                                    {{ $row->id }}
+                                    {{ $user->id }}
                                 </td>
                                 <td>
-                                    {{ $row->name }}
+                                    {{ $user->name }}
                                 </td>
                                 <td>
-                                    {{ $row->phone }}
+                                    {{ $user->phone }}
                                 </td>
                                 <td>
-                                    {{ $row->address }}
+                                    {{ $user->address }}
                                 </td>
                                 <td>
-                                    {{ $row->email }}
+                                    {{ $user->email }}
                                 </td>
                                 <td>
-                                    {{ $row->usertype }}
+                                    {{ $user->usertype }}
                                 </td>
                                 <td>
-                                    <a href="/role-edit/{{ $row->id }}" class="btn btn-success">EDIT</a>
+                                    <a href="/role-edit/{{ $user->id }}" class="btn btn-success">EDIT</a>
                                 </td>
                                 <td>
-                                    <form action="/role-delete/{{ $row->id }}" method="post">
+                                    <form action="/role-delete/{{ $user->id }}" method="post">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                         <button type="submit" class="btn btn-danger">DELETE</button>
                                     </form>
                                 </td>
                             </tr>
+
                             @endforeach
                             </tbody>
+
                         </table>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="col-md-12">
             <div class="card card-plain">
                 <div class="card-header">
