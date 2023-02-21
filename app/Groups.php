@@ -8,9 +8,9 @@ class Groups extends Model
 {
    protected $fillable = [
 
-       'name',
+       'room',
        'time',
-       'user_id',
+
 
    ];
 
