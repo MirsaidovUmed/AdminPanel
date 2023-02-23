@@ -16,7 +16,7 @@ class GroupsController extends Controller
     {
         $group = Groups::all();
 
-       return view('groups' , compact('group'));
+       return view('groups' , compact('group' ));
     }
 
     /**

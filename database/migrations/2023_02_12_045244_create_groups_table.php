@@ -20,6 +20,7 @@ class CreateGroupsTable extends Migration
             $table->string('language');
             $table->bigInteger('user_id')->unsigned();
             $table->string('type');
+            $table->string('teacher');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
