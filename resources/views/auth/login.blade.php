@@ -14,10 +14,17 @@
                             <label for="phone" class="col-md-4 col-form-label text-md-right">{{ __('Phone') }}</label>
 
                             <div class="col-md-6">
+<<<<<<< HEAD
                                 <input id="phone" type="text" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="phone" autofocus>
 
                                 @error('phone')
                                 <span class="invalid-feedback" role="alert">
+=======
+                                <input id="phone" type="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" value="{{ old('phone') }}" required autocomplete="email" autofocus>
+
+                                @error('phone')
+                                    <span class="invalid-feedback" role="alert">
+>>>>>>> 416e9194271001b27586349ad106f4c3aeb6d40e
                                         <strong>{{ $message }}</strong>
                                     </span>
                                 @enderror

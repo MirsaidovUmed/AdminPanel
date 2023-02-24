@@ -16,8 +16,16 @@
         </tr>
         </thead>
         <tbody>
-
+         @foreach($group as $group)
+             <tr>
+                 <td>{{$group->id}}</td>
+                 <td>{{$group->time}}</td>
+                 <td>{{$group->room}}</td>
+                 <td>{{$group->id}}</td>
+                 <td>{{}}</td>
+             </tr>
         </tbody>
+        @endforeach
     </table>
 
 @endsection

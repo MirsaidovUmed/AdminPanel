@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -28,17 +30,7 @@ class LoginController extends Controller
      * @var string
      */
     //protected $redirectTo = RouteServiceProvider::HOME;
-    protected function redirectTo()
-    {
-        if(Auth::user()->usertype == 'admin')
-        {
-            return 'dashboard';
-        }
-        else
-        {
-            return 'home';
-        }
-    }
+
 
     /**
      * Create a new controller instance.
@@ -48,5 +40,35 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->user = new User;
+    }
+
+    public function login(Request $request)
+    {
+        // Check validation - Note : you can change validation as per your requirements
+        $this->validate($request, [
+            'phone' => 'required|digits:9',
+
+        ]);
+
+        // Get user record
+        $user = User::where('phone', $request->get('phone'))->first();
+
+        // Check Condition Mobile No. Found or Not
+        if($request->get('phone') != $user->phone) {
+            \Session::put('errors', 'Please Register First mobile number.!!');
+            return back();
+        }
+
+
+        \Auth::login($user);
+        if(Auth::user()->usertype == 'admin')
+        {
+            return redirect('dashboard');
+        }
+        else
+        {
+            return redirect('home');
+        }
     }
 }

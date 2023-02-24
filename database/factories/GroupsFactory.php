@@ -8,9 +8,12 @@ use Faker\Generator as Faker;
 
 $factory->define(Groups::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
+        'language'=>$faker->languageCode('en'),
         'time' => $faker->time,
+        'type'=> $faker->jobTitle('group'),
         'room' =>$faker->numberBetween('1' ,'12'),
-        'user_id' => $faker->randomElement(User::pluck('id')->toArray()),
+        'user_id' => $faker->numberBetween(1 , 51),
+
+
     ];
 });
