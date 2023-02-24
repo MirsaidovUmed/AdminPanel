@@ -1,10 +1,17 @@
 @extends('layouts.master')
 
 @section('title')
+    Department
 @endsection
 
 @section('content')
 
-    hello
+    <div class="container">
+        <div class="row">
+            <div>
+                <h1>Hello</h1>
+            </div>
+        </div>
+    </div>
 
 @endsection
