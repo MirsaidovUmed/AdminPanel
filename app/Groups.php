@@ -6,19 +6,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Groups extends Model
 {
-   protected $fillable = [
+    protected $fillable = [
+        'class_name',
+        'class_numeric',
+        'teacher_id',
+        'class_description'
+    ];
 
-       'room',
-       'time',
+    public function students()
+    {
+        return $this->hasMany(Student::class,'class_id');
+    }
 
+    public function subjects()
+    {
+        return $this->belongsToMany(Subject::class);
+    }
 
-   ];
-
-
-
-
-   public function user()
-   {
-       return $this->belongsTo(User::class);
-   }
+    public function teacher() 
+    {
+        return $this->belongsTo(Teacher::class);
+    }
 }

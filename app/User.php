@@ -40,12 +40,14 @@ class User extends Authenticatable
     {
       return $this->hasMany(Items::class);
     }
-<<<<<<< HEAD
 
-=======
-    public function group()
+    public function teacher()
     {
-        return $this->hasMany(Groups::class);
+        return $this->hasOne(Teacher::class);
     }
->>>>>>> 416e9194271001b27586349ad106f4c3aeb6d40e
+
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
 }
