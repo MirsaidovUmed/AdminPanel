@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use App\User;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -14,7 +15,9 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        $students = Student::with('class')->latest()->paginate(10);
+
+        return view('backend.students.index', compact('students'));
     }
 
     /**
@@ -35,8 +38,47 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'              => 'required|string|max:255',
+            'phone'             => 'required|string|email|max:255|unique:users',
+            'password'          => 'required|string|min:8',
+            'class_id'          => 'required|numeric',
+            'roll_number'       => 'required|numeric|unique:students',
+            'gender'            => 'required|string',
+            'dateofbirth'       => 'required|date',
+            'address'           => 'required|string|max:255'
+        ]);
+
+        $user = User::create([
+            'name'              => $request->name,
+            'phone'             => $request->phone,
+            'password'          => Hash::make($request->password)
+        ]);
+
+        if ($request->hasFile('profile_picture')) {
+            $profile = str_slug($user->name).'-'.$user->id.'.'.$request->profile_picture->getClientOriginalExtension();
+            $request->profile_picture->move(public_path('images/profile'), $profile);
+        } else {
+            $profile = 'avatar.png';
+        }
+        $user->update([
+            'profile_picture' => $profile
+        ]);
+
+        $user->student()->create([
+            'class_id'          => $request->class_id,
+            'roll_number'       => $request->roll_number,
+            'gender'            => $request->gender,
+            'phone'             => $request->phone,
+            'dateofbirth'       => $request->dateofbirth,
+            'address'   => $request->address,
+        ]);
+
+        $user->assignRole('Student');
+
+        return redirect()->route('student.index');
     }
+
 
     /**
      * Display the specified resource.
