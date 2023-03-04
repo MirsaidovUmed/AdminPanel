@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Department;
+use App\Subject;
+use App\Teacher;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -14,8 +16,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $department = Department::all();
-        return view('department');
+        $classes = Department::withCount('students')->latest()->paginate(10);
+
+        return view('backend.classes.index', compact('classes'));
     }
 
     /**
@@ -25,7 +28,9 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        $teachers = Teacher::latest()->get();
+        
+        return view('backend.classes.create', compact('teachers'));
     }
 
     /**
@@ -36,19 +41,27 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $department = new Department;
+        $request->validate([
+            'class_name'        => 'required|string|max:255|unique:grades',
+            'class_numeric'     => 'required|numeric',
+            'teacher_id'        => 'required|numeric',
+            'class_description' => 'required|string|max:255'
+        ]);
 
-        $department->name = $request->input('name');
-        $department->header = $request->input('header');
-        $department->user_id = $request->input('user_id');
+        Department::create([
+            'class_name'        => $request->class_name,
+            'class_numeric'     => $request->class_numeric,
+            'teacher_id'        => $request->teacher_id,
+            'class_description' => $request->class_description
+        ]);
 
-        $department->save();
+        return redirect()->route('classes.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Department  $department
+     * @param  \App\Department $grade
      * @return \Illuminate\Http\Response
      */
     public function show(Department $department)
@@ -59,40 +72,86 @@ class DepartmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Department  $department
+     * @param  \App\Department  $grade
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $department = Department::findOrFail($id);
-        return view('department');
+        $teachers = Teacher::latest()->get();
+        $class = Department::findOrFail($id);
+
+        return view('backend.classes.edit', compact('class','teachers'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Department  $department
+     * @param  \App\Department  $grade
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $department = Department::findOrFail($id);
-        $department->name = $request->input('name');
-        $department->header = $request->input('header');
-        $department->user_id = $request->input('user_id');
-        $department->update();
+        $request->validate([
+            'class_name'        => 'required|string|max:255|unique:grades,class_name,'.$id,
+            'class_numeric'     => 'required|numeric',
+            'teacher_id'        => 'required|numeric',
+            'class_description' => 'required|string|max:255'
+        ]);
+
+        $class = Department::findOrFail($id);
+
+        $class->update([
+            'class_name'        => $request->class_name,
+            'class_numeric'     => $request->class_numeric,
+            'teacher_id'        => $request->teacher_id,
+            'class_description' => $request->class_description
+        ]);
+
+        return redirect()->route('classes.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Department  $department
+     * @param  \App\Department  $grade
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $department = Department::findOrFail($id);
-        $department->delete();
+        $class = Department::findOrFail($id);
+        
+        $class->subjects()->detach();
+        $class->delete();
+
+        return back();
+    }
+
+    /*
+     * Assign Subjects to Grade 
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function assignSubject($classid)
+    {
+        $subjects   = Subject::latest()->get();
+        $assigned   = Department::with(['subjects','students'])->findOrFail($classid);
+
+        return view('backend.classes.assign-subject', compact('classid','subjects','assigned'));
+    }
+
+    /*
+     * Add Assigned Subjects to Grade 
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeAssignedSubject(Request $request, $id)
+    {
+        $class = Department::findOrFail($id);
+
+        $class->subjects()->sync($request->selectedsubjects);
+
+        return redirect()->route('classes.index');
     }
 }

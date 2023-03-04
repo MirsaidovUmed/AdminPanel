@@ -63,9 +63,6 @@
                                     {{ $user->address }}
                                 </td>
                                 <td>
-                                    {{ $user->email }}
-                                </td>
-                                <td>
                                     {{ $user->usertype }}
                                 </td>
                                 <td>

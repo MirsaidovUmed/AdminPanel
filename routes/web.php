@@ -49,8 +49,36 @@ Route::group(['middleware'=>['auth','admin']], function(){
     Route::get('groups' , 'GroupsController@index');
 
     Route::get('department' , 'DepartmentController@index');
-    Route::get('/department/', 'DepartmentController@store');
+    Route::post('department', 'DepartmentController@store');
+    Route::get('attendance', 'AttendanceController@index');
+    Route::post('attendance', 'AttendanceController@store');
 
+    Route::get('/roles-permissions', 'RolePermissionController@roles')->name('roles-permissions');
+    Route::get('/role-create', 'RolePermissionController@createRole')->name('role.create');
+    Route::post('/role-store', 'RolePermissionController@storeRole')->name('role.store');
+    Route::get('/role-edit/{id}', 'RolePermissionController@editRole')->name('role.edit');
+    Route::put('/role-update/{id}', 'RolePermissionController@updateRole')->name('role.update');
+
+    Route::get('/permission-create', 'RolePermissionController@createPermission')->name('permission.create');
+    Route::post('/permission-store', 'RolePermissionController@storePermission')->name('permission.store');
+    Route::get('/permission-edit/{id}', 'RolePermissionController@editPermission')->name('permission.edit');
+    Route::put('/permission-update/{id}', 'RolePermissionController@updatePermission')->name('permission.update');
+
+    Route::get('assign-subject-to-class/{id}', 'GradeController@assignSubject')->name('class.assign.subject');
+    Route::post('assign-subject-to-class/{id}', 'GradeController@storeAssignedSubject')->name('store.class.assign.subject');
+
+    Route::resource('assignrole', 'RoleAssign');
+    Route::resource('classes', 'GradeController');
+    Route::resource('subject', 'SubjectController');
+    Route::resource('teacher', 'TeacherController');
+    Route::resource('parents', 'ParentsController');
+    Route::resource('student', 'StudentController');
+    Route::get('attendance', 'AttendanceController@index')->name('attendance.index');
 });
 
+Route::group(['middleware' => ['auth','role:Teacher']], function () 
+{
+    Route::post('attendance', 'AttendanceController@store')->name('teacher.attendance.store');
+    Route::get('attendance-create/{classid}', 'AttendanceController@createByTeacher')->name('teacher.attendance.create');
+});
 

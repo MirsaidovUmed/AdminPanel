@@ -25,7 +25,6 @@ class DashboardController extends Controller
         $users = User::find($id);
         $users->name = $request->input('username');
         $users->phone = $request->input('phone');
-        $users->address = $request->input('address');
         $users->usertype = $request->input('usertype');
         $users->update();
 
