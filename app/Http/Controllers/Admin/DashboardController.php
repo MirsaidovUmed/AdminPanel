@@ -10,7 +10,7 @@ class DashboardController extends Controller
 {
     public function registered()
     {
-        $users = User::all();
+        $users = User::all()->where('usertype' , '=' ,'user');
 
         return view('admin.register')->with('users' , $users);
     }
@@ -25,6 +25,10 @@ class DashboardController extends Controller
         $users = User::find($id);
         $users->name = $request->input('username');
         $users->phone = $request->input('phone');
+        $users->days = $request->input('days');
+        $users->level = $request->input('level');
+        $users->time = $request->input('time');
+        $users->birthdate = $request->input('birthdate');
         $users->usertype = $request->input('usertype');
         $users->update();
 

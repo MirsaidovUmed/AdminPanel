@@ -17,6 +17,54 @@
                         </div>
                     @endif
                 </div>
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add</button>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Full name:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Phone:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">birth date:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">time:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">days:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">How did they know us:</label>
+                                        <input type="text" class="form-control" id="recipient-name">
+                                    </div>
+
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Send message</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">
@@ -31,13 +79,13 @@
                                 Phone number
                             </th>
                             <th>
-                                Address
+                                Birth date
                             </th>
                             <th>
-                                Email
+                                Time
                             </th>
                             <th>
-                                Usertype
+                                Days
                             </th>
                             <th>
                                 EDIT
@@ -60,10 +108,13 @@
                                     {{ $user->phone }}
                                 </td>
                                 <td>
-                                    {{ $user->address }}
+                                    {{ $user->birthdate }}
                                 </td>
                                 <td>
-                                    {{ $user->usertype }}
+                                    {{ $user->time }}
+                                </td>
+                                <td>
+                                    {{ $user->days }}
                                 </td>
                                 <td>
                                     <a href="/role-edit/{{ $user->id }}" class="btn btn-success">EDIT</a>
