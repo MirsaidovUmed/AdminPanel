@@ -5,66 +5,70 @@
 @endsection
 
 @section('content')
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <h4 class="card-title">Registered Roles</h4>
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                </div>
-
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@getbootstrap">Add</button>
-
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Add info</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
+                            <form action="/role-register" method="POST">
+                             {{ csrf_field() }}
+                             {{ method_field('POST') }}
                             <div class="modal-body">
-                                <form>
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Full name:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
+                                        <input type="text" name="username" class="form-control" id="recipient-name">
                                     </div>
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Phone:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
+                                        <input type="text" name="phone" class="form-control" id="recipient-name">
                                     </div>
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">birth date:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
+                                        <input type="text" name="birthdate" class="form-control" id="recipient-name">
                                     </div>
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">time:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
+                                        <input type="text" name="time" class="form-control" id="recipient-name">
                                     </div>
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">days:</label>
-                                        <input type="text" class="form-control" id="recipient-name">
+                                        <input type="text" name="days" class="form-control" id="recipient-name">
                                     </div>
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">How did they know us:</label>
                                         <input type="text" class="form-control" id="recipient-name">
                                     </div>
-
-                                </form>
-                            </div>
-                            <div class="modal-footer">
+                                    </div>
+                                    <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Send message</button>
+                                <button type="submit" class="btn btn-primary">Send message</button>
                             </div>
+                            </form>
                         </div>
                     </div>
                 </div>
+                <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"> Role Register
+                            <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#exampleModal">Add</button>
+                        </h4>
+                        @if (session('status'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('status') }}
+                            </div>
+                        @endif
+                </div>
+                <style>
+                    .w-10p{
+                        width: 10% !important;
+                    }
+                </style>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table">

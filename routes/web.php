@@ -31,7 +31,7 @@ Route::group(['middleware'=>['auth','admin']], function(){
         return view('admin.dashboard');
     });
     Route::get('/role-register', 'Admin\DashboardController@registered');
-
+    Route::post('/role-register', 'Admin\DashboardController@registerstore');
     Route::get('/role-edit/{id}', 'Admin\DashboardController@registeredit');
 
     Route::put('/role-register-update/{id}', 'Admin\DashboardController@registerupdate');
@@ -57,9 +57,5 @@ Route::group(['middleware'=>['auth','admin']], function(){
 
 });
 
-Route::group(['middleware' => ['auth','role:Teacher']], function ()
-{
-    Route::post('attendance', 'AttendanceController@store')->name('teacher.attendance.store');
-    Route::get('attendance-create/{classid}', 'AttendanceController@createByTeacher')->name('teacher.attendance.create');
-});
+
 

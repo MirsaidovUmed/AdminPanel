@@ -40,4 +40,18 @@ class DashboardController extends Controller
         $users->delete();
         return redirect('/role-register')->with('status' , 'Your Data is Deleted');
     }
+    public function registerstore(Request $request)
+    {
+        $users = new User;
+
+        $users->name = $request->input('username');
+        $users->phone = $request->input('phone');
+        $users->days = $request->input('days');
+        $users->level = $request->input('level');
+        $users->time = $request->input('time');
+        $users->birthdate = $request->input('birthdate');
+        $users->save();
+
+        return redirect('/role-register')->with('status','Data Added for Users');
+    }
 }
