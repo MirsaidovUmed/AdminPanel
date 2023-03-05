@@ -16,7 +16,7 @@
                             </div>
                             <form action="/role-register" method="POST">
                              {{ csrf_field() }}
-                             {{ method_field('POST') }}
+                            
                             <div class="modal-body">
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Full name:</label>

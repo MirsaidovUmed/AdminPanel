@@ -25,6 +25,7 @@ class DashboardController extends Controller
         $users = User::find($id);
         $users->name = $request->input('username');
         $users->phone = $request->input('phone');
+       
         $users->days = $request->input('days');
         $users->level = $request->input('level');
         $users->time = $request->input('time');
@@ -46,6 +47,7 @@ class DashboardController extends Controller
 
         $users->name = $request->input('username');
         $users->phone = $request->input('phone');
+        $users->password = $request->input('phone');
         $users->days = $request->input('days');
         $users->level = $request->input('level');
         $users->time = $request->input('time');
