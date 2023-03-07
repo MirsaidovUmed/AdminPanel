@@ -14,7 +14,7 @@ class DashboardController extends Controller
 
         $users = User::all()->where('usertype' , '=' ,'user');
         $payments =User::with('payments')->get();
-        dd($payments);
+
 
         return view('admin.register' ,compact('users' , 'payments'));
 
@@ -57,7 +57,11 @@ class DashboardController extends Controller
         $users->level = $request->input('level');
         $users->time = $request->input('time');
         $users->birthdate = $request->input('birthdate');
+
         $users->save();
+
+
+
 
         return redirect('/role-register')->with('status','Data Added for Users');
     }
