@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Department;
+use App\User;
 use App\Subject;
 use App\Teacher;
 use Illuminate\Http\Request;
@@ -16,9 +17,8 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        $classes = Department::withCount('students')->latest()->paginate(10);
-
-        return view('backend.classes.index', compact('classes'));
+        $users = User::all();
+        return view('department' , compact('users'));
     }
 
     /**
@@ -28,9 +28,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        $teachers = Teacher::latest()->get();
-        
-        return view('backend.classes.create', compact('teachers'));
+
     }
 
     /**
@@ -41,21 +39,15 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'class_name'        => 'required|string|max:255|unique:grades',
-            'class_numeric'     => 'required|numeric',
-            'teacher_id'        => 'required|numeric',
-            'class_description' => 'required|string|max:255'
-        ]);
+        $users = new User;
 
-        Department::create([
-            'class_name'        => $request->class_name,
-            'class_numeric'     => $request->class_numeric,
-            'teacher_id'        => $request->teacher_id,
-            'class_description' => $request->class_description
-        ]);
-
-        return redirect()->route('classes.index');
+        $users->name = $request->input('name');
+        $users->phone = $request->input('phone');
+        $users->course = $request->input('course');
+        $users->time = $request->input('time');
+        $users->password = $request->input('phone');
+        $users->save();
+        return redirect('department')->with('status','Data Added for Users');
     }
 
     /**
@@ -75,12 +67,10 @@ class DepartmentController extends Controller
      * @param  \App\Department  $grade
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        $teachers = Teacher::latest()->get();
-        $class = Department::findOrFail($id);
-
-        return view('backend.classes.edit', compact('class','teachers'));
+        $users = User::findOrFail($id);
+        return view('department')->with('users', $users);
     }
 
     /**
@@ -92,23 +82,14 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'class_name'        => 'required|string|max:255|unique:grades,class_name,'.$id,
-            'class_numeric'     => 'required|numeric',
-            'teacher_id'        => 'required|numeric',
-            'class_description' => 'required|string|max:255'
-        ]);
+        $users = User::find($id);
+        $users->name = $request->input('name');
+        $users->phone = $request->input('phone');
+        $users->days = $request->input('course');
+        $users->time = $request->input('time');
+        $users->update();
 
-        $class = Department::findOrFail($id);
-
-        $class->update([
-            'class_name'        => $request->class_name,
-            'class_numeric'     => $request->class_numeric,
-            'teacher_id'        => $request->teacher_id,
-            'class_description' => $request->class_description
-        ]);
-
-        return redirect()->route('classes.index');
+        return redirect('department')->with('status' , 'Your Data is Updated');
     }
 
     /**
@@ -119,39 +100,16 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        $class = Department::findOrFail($id);
-        
-        $class->subjects()->detach();
-        $class->delete();
-
-        return back();
+        $users = User::findOrFail($id);
+        $users->delete();
+        return redirect('/department')->with('status' , 'Your Data is Deleted');
     }
+
 
     /*
-     * Assign Subjects to Grade 
-     * 
+     * Assign Subjects to Grade
+     *
      * @return \Illuminate\Http\Response
      */
-    public function assignSubject($classid)
-    {
-        $subjects   = Subject::latest()->get();
-        $assigned   = Department::with(['subjects','students'])->findOrFail($classid);
 
-        return view('backend.classes.assign-subject', compact('classid','subjects','assigned'));
-    }
-
-    /*
-     * Add Assigned Subjects to Grade 
-     * 
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function storeAssignedSubject(Request $request, $id)
-    {
-        $class = Department::findOrFail($id);
-
-        $class->subjects()->sync($request->selectedsubjects);
-
-        return redirect()->route('classes.index');
-    }
 }

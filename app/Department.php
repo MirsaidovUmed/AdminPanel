@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Department extends Model
 {
     protected $fillable = [
-        'class_name',
-        'class_numeric',
-        'teacher_id',
-        'class_description'
+        'name',
+        'phone',
+        'course',
+        'time'
     ];
 
     public function students()

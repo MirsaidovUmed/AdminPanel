@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
+Route::get('/points' , 'PointsController@index');
 
 
 Auth::routes();
@@ -48,10 +48,28 @@ Route::group(['middleware'=>['auth','admin']], function(){
     Route::get('profile'  ,'ProfileController@index');
     Route::get('groups' , 'GroupsController@index');
 
+
+      /// Department
+
+
     Route::get('department' , 'DepartmentController@index');
     Route::post('department', 'DepartmentController@store');
+    Route::put('department/{id}' , 'DepartmentController@update');
+    Route::get('department/{id}' , 'DepartmentController@edit');
+    Route::delete('department/{id}' , 'DepartmentController@destroy');
+
+    Route::get('employ' , 'EmployController@index');
+    Route::post('employ', 'EmployController@store');
+    Route::put('employ/{id}' , 'EmployController@update');
+    Route::get('employ/{id}' , 'EmployController@edit');
+    Route::delete('employ/{id}' , 'EmployController@destroy');
+
     Route::get('attendance', 'AttendanceController@index');
     Route::post('attendance', 'AttendanceController@store');
+
+
+
+
 
 
 

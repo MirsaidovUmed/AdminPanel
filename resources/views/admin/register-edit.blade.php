@@ -28,8 +28,8 @@
                                <div class="form-group">
                                    <label>Give Role</label>
                                    <select name="usertype" class="form-control">
+                                       <option value="user">Юзер</option>    
                                        <option value="admin">Админ</option>
-                                       <option value="teacher">Учитель</option>
                                        <option value="student">Студент</option>
                                        <option value="cashier">Кассир</option>
                                    </select>

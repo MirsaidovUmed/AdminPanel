@@ -43,13 +43,13 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li>
-            <a href="./icons.html">
+          <li class="{{ 'attendance' == request()->path() ? 'active' : '' }}">
+            <a href="/attendance">
               <i class="now-ui-icons education_atom"></i>
-              <p>Icons</p>
+              <p>Attendance</p>
             </a>
           </li>
-          <li>
+          <li class="{{ 'groups' == request()->path() ? 'active' : '' }}">
             <a href="groups">
               <i class="now-ui-icons location_map-big"></i>
               <p>Группы</p>
@@ -73,12 +73,18 @@
               <p>Профиль</p>
             </a>
           </li>
-          <li>
-            <a href="./typography.html">
+          <li class="{{ 'department' == request()->path() ? 'active' : '' }}">
+            <a href="department">
               <i class="now-ui-icons text_caps-small"></i>
-              <p>Typography</p>
+              <p>Department</p>
             </a>
           </li>
+            <li class="{{ 'employ' == request()->path() ? 'active' : '' }}">
+                <a href="employ">
+                    <i class="now-ui-icons users_single-02"></i>
+                    <p>Users</p>
+                </a>
+            </li>
 
         </ul>
       </div>

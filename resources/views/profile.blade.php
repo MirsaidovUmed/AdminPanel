@@ -15,35 +15,48 @@
                         <h4 class="text-right">Настройки профиля</h4>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-md-6"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
-                        <div class="col-md-6"><label class="labels">Surname</label><input type="text" class="form-control" value="" placeholder="surname"></div>
+                        <div class="col-md-6"><label class="labels">Имя</label><input type="text" class="form-control" placeholder="Имя" value=""></div>
+                        <div class="col-md-6"><label class="labels">Фамилия</label><input type="text" class="form-control" value="" placeholder="Фамилия"></div>
                     </div>
                     <div class="row mt-3">
-                        <div class="col-md-12"><label class="labels">Mobile Number</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
-                        <div class="col-md-12"><label class="labels">Address Line 1</label><input type="text" class="form-control" placeholder="enter address line 1" value=""></div>
-                        <div class="col-md-12"><label class="labels">Address Line 2</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                        <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                        <div class="col-md-12"><label class="labels">State</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                        <div class="col-md-12"><label class="labels">Area</label><input type="text" class="form-control" placeholder="enter address line 2" value=""></div>
-                        <div class="col-md-12"><label class="labels">Email ID</label><input type="text" class="form-control" placeholder="enter email id" value=""></div>
-                        <div class="col-md-12"><label class="labels">Education</label><input type="text" class="form-control" placeholder="education" value=""></div>
+                        <div class="col-md-12"><label class="labels">Номер телефона</label><input type="text" class="form-control" placeholder="введите номер телефона" value=""></div>
+                        <div class="col-md-12"><label class="labels"></label>Должность<input type="text" class="form-control" placeholder="Должность" value=""></div>
+                        <div class="col-md-12"><label class="labels">Часы работы</label><input type="text" class="form-control" placeholder="Часы работы по договору" value=""></div>
+                        <div class="col-md-12"><label class="labels">Место работы</label><input type="text" class="form-control" placeholder="Филлиал" value=""></div>
+                        <div class="col-md-12"><label class="labels">Время и дни работы</label><input type="text" class="form-control" placeholder="Время и дни работы" value=""></div>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>
-                        <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>
-                    </div>
-                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Save Profile</button></div>
-                </div>
+                    @foreach($users as $user)
+                        <tr>
+                            <td>
+                                {{ $user->id }}
+                            </td>
+                            <td>
+                                {{ $user->name }}
+                            </td>
+                            <td>
+                                {{ $user->phone }}
+                            </td>
+                            <td>
+                                {{ $user->course }}
+                            </td>
+                            <td>
+                                {{ $user->time }}
+                            </td>
+                            <td>
+                                <a href="/employ/{{ $user->id }}" class="btn btn-success">EDIT</a>
+                            </td>
+                            <td>
+                                <form action="/employ/{{ $user->id }}" method="post">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
+                                    <button type="submit" class="btn btn-danger">DELETE</button>
+                                </form>
+                            </td>
+                        </tr>
+
+                    @endforeach
+
+
             </div>
-            <div class="col-md-4">
-                <div class="p-3 py-5">
-                    <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
-                    <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>
-                    <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
     </div>
 @endsection
