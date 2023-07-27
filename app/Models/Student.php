@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,17 +17,17 @@ class Student extends Model
         'permanent_address',
     ];
 
-    public function user() 
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function class() 
+    public function class()
     {
         return $this->belongsTo(Department::class, 'class_id');
     }
 
-    public function attendances() 
+    public function attendances()
     {
         return $this->hasMany(Attendance::class);
     }

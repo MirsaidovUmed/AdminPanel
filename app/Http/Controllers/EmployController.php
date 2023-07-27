@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\employ;
-use App\User;
+use App\Models\employ;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class EmployController extends Controller
@@ -51,7 +51,7 @@ class EmployController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\employ  $employ
+     * @param  \App\Models\employ  $employ
      * @return \Illuminate\Http\Response
      */
     public function show(employ $employ)
@@ -62,7 +62,7 @@ class EmployController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param \App\employ $employ
+     * @param \App\Models\employ $employ
      * @param $id
      * @return \Illuminate\Http\Response
      */
@@ -76,7 +76,7 @@ class EmployController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\employ  $employ
+     * @param  \App\Models\employ  $employ
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, employ $employ)
@@ -87,7 +87,7 @@ class EmployController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\employ  $employ
+     * @param  \App\Models\employ  $employ
      * @return \Illuminate\Http\Response
      */
     public function destroy(employ $employ)

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Subject;
-use App\Teacher;
+use App\Models\Subject;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -16,7 +16,7 @@ class SubjectController extends Controller
     public function index()
     {
         $subjects = Subject::with('teacher')->latest()->paginate(10);
-        
+
         return view('backend.subjects.index', compact('subjects'));
     }
 
@@ -61,7 +61,7 @@ class SubjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Subject  $subject
+     * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
     public function show(Subject $subject)
@@ -72,7 +72,7 @@ class SubjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Subject  $subject
+     * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
     public function edit(Subject $subject)
@@ -86,7 +86,7 @@ class SubjectController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Subject  $subject
+     * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Subject $subject)
@@ -112,7 +112,7 @@ class SubjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Subject  $subject
+     * @param  \App\Models\Subject  $subject
      * @return \Illuminate\Http\Response
      */
     public function destroy(Subject $subject)

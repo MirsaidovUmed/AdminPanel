@@ -1,19 +1,18 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Payments extends Model
+class Balance extends Model
 {
     protected $fillable = [
-
-        'user_id',
-        'uuid',
-        'amount'
+      'balance'
     ];
 
-    public function users()
+
+
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

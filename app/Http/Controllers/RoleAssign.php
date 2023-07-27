@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class RoleAssign extends Controller
 {
@@ -20,7 +20,7 @@ class RoleAssign extends Controller
     public function create()
     {
         $roles = Role::latest()->get();
-        
+
         return view('backend.assignrole.create', compact('roles'));
     }
 
@@ -47,7 +47,7 @@ class RoleAssign extends Controller
     {
         $user = User::with('roles')->findOrFail($id);
         $roles = Role::latest()->get();
-        
+
         return view('backend.assignrole.edit', compact('user','roles'));
     }
 
@@ -74,7 +74,7 @@ class RoleAssign extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-        
+
         // $user->removeRole('writer');
         // $user->syncRoles(['writer', 'admin']);
 
@@ -89,7 +89,7 @@ class RoleAssign extends Controller
         //             unlink($image_path);
         //         }
         //     }
-            
+
         // }
 
         return back();

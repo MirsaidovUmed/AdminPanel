@@ -16,7 +16,7 @@
                             </div>
                             <form action="/department" method="POST">
                              {{ csrf_field() }}
-                            
+
                             <div class="modal-body">
                                     <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Full name:</label>
@@ -261,7 +261,6 @@
     </div>
     </div>
 @endsection
-
 
 @section('scripts')
 

@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Department;
-use App\User;
-use App\Subject;
-use App\Teacher;
+use App\Models\Department;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -53,7 +51,7 @@ class DepartmentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Department $grade
+     * @param  \App\Models\Department $grade
      * @return \Illuminate\Http\Response
      */
     public function show(Department $department)
@@ -64,7 +62,7 @@ class DepartmentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Department  $grade
+     * @param  \App\Models\Department  $grade
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, $id)
@@ -77,7 +75,7 @@ class DepartmentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Department  $grade
+     * @param  \App\Models\Department  $grade
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -95,7 +93,7 @@ class DepartmentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Department  $grade
+     * @param  \App\Models\Department  $grade
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

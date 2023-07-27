@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Teacher;
+use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -53,7 +53,7 @@ class TeacherController extends Controller
             'phone'     => $request->phone,
             'password'  => Hash::make($request->password)
         ]);
-        
+
         if ($request->hasFile('profile_picture')) {
             $profile = str_slug($user->name).'-'.$user->id.'.'.$request->profile_picture->getClientOriginalExtension();
             $request->profile_picture->move(public_path('images/profile'), $profile);
@@ -79,7 +79,7 @@ class TeacherController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Teacher  $teacher
+     * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
     public function show(Teacher $teacher)
@@ -90,7 +90,7 @@ class TeacherController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Teacher  $teacher
+     * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
     public function edit(Teacher $teacher)
@@ -104,7 +104,7 @@ class TeacherController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Teacher  $teacher
+     * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Teacher $teacher)
@@ -146,7 +146,7 @@ class TeacherController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Teacher  $teacher
+     * @param  \App\Models\Teacher  $teacher
      * @return \Illuminate\Http\Response
      */
     public function destroy(Teacher $teacher)

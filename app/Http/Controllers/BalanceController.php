@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Balance;
+use App\Models\Balance;
 use Illuminate\Http\Request;
 
 class BalanceController extends Controller
@@ -41,7 +41,7 @@ class BalanceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Balance  $balance
+     * @param  \App\Models\Balance  $balance
      * @return \Illuminate\Http\Response
      */
     public function show(Balance $balance)
@@ -52,7 +52,7 @@ class BalanceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Balance  $balance
+     * @param  \App\Models\Balance  $balance
      * @return \Illuminate\Http\Response
      */
     public function edit(Balance $balance)
@@ -64,7 +64,7 @@ class BalanceController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Balance  $balance
+     * @param  \App\Models\Balance  $balance
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Balance $balance)
@@ -75,7 +75,7 @@ class BalanceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Balance  $balance
+     * @param  \App\Models\Balance  $balance
      * @return \Illuminate\Http\Response
      */
     public function destroy(Balance $balance)

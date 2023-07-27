@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +34,7 @@ Route::group(['middleware'=>['auth','admin']], function(){
     Route::get('/role-register', 'Admin\DashboardController@registered');
     Route::post('/role-register', 'Admin\DashboardController@registerstore');
     Route::get('/role-edit/{id}', 'Admin\DashboardController@registeredit');
-
     Route::put('/role-register-update/{id}', 'Admin\DashboardController@registerupdate');
-
     Route::delete('/role-delete/{id}' , 'Admin\DashboardController@registerdelete');
 
     Route::get('/abouts' , 'Admin\AboutusController@index');
@@ -67,12 +66,12 @@ Route::group(['middleware'=>['auth','admin']], function(){
     Route::get('attendance', 'AttendanceController@index');
     Route::post('attendance', 'AttendanceController@store');
 
-
-
-
-
-
-
+    Route::get('posts', [App\Http\Controllers\PostController::class,'index']);
+    Route::get('add-post', [App\Http\Controllers\PostController::class,'create']);
+    Route::post('add-post', [App\Http\Controllers\PostController::class,'store']);
+    Route::get('edit-post/{id}', [App\Http\Controllers\PostController::class,'edit']);
+    Route::put('update-post/{id}', [App\Http\Controllers\PostController::class,'update']);
+    Route::get('delete-post/{id}', [App\Http\Controllers\PostController::class,'destroy']);
 });
 
 

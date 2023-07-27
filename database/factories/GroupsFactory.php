@@ -2,8 +2,7 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Groups;
-use App\User;
+use App\Models\Groups;
 use Faker\Generator as Faker;
 
 $factory->define(Groups::class, function (Faker $faker) {
